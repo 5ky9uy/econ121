@@ -11,7 +11,7 @@ library(tidyverse)
 rm(list = ls())
 
 # read in names dataset
-ssa <- read_csv("https://github.com/tvogl/econ121/raw/main/data/ssa_names.csv")
+ssa <- read_csv("https://github.com/tomvogl/econ121/raw/main/data/ssa_names.csv")
 
 # summarize
 summary(ssa)
