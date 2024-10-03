@@ -19,7 +19,7 @@ library(tidyverse)
 library(fixest)
 
 # load nlsy79.Rdata
-load(url("https://github.com/tomvogl/econ121/raw/main/data/nlsy79.rd"))
+load(url("https://github.com/tomvogl/econ121/raw/main/data/nlsy79.rds"))
 ```
 
 To get started, Let's look at the structure of the dataset.
