@@ -9,7 +9,7 @@ rm(list=ls())
 library(tidyverse)
 library(fixest)
 
-# load nlsy79.Rdata
+# load nlsy79.rda
 load(url("https://github.com/tomvogl/econ121/raw/main/data/nlsy79.rds"))
 
 # data structure
