@@ -49,7 +49,30 @@ feols(laborinc18 ~ afqt81, data = nlsy79, vcov = 'hetero', weights = ~perweight)
 # in standard errors is consistent with a loss of efficiency. since the point
 # estimates are similar, we might prefer the more precise unweighted estimator.
 
-# now let's try the same for gender and labor income
+# the slope on AFQT is more interpretable if we know something about the 
+# distribution of AFQT:
+summary(nlsy79$afqt81)
+# these are unweighted statistics, but they are at least a quick
+# way to understand that the score is scaled between 1 and 99. if we wanted 
+# to be fully careful, we would want to compute weighted statistics.
+# we can estimate weighted averages using the function weighted.mean().
+# tidyverse does not have an analogous weighted.sd() function, 
+# so let's create that function from scratch:
+weighted_sd <- function(x, w) {
+  weighted_mean <- sum(x * w) / sum(w)
+  weighted_variance <- sum(w * (x - weighted_mean)^2) / sum(w)
+  sqrt(weighted_variance)
+}
+# now estimate the weighted mean and sd of AFQT
+nlsy79 %>%
+  drop_na(afqt81) %>%
+  summarize(wtmean = weighted.mean(afqt81, w = perweight),
+            wtsd = weighted_sd(afqt81,w=perweight),
+            numobs = n())
+# so a 1-standard deviation increase in AFQT is associated with
+# an increase in earnings of 29 times the coefficient!
+
+# now let's try running the same regressions for gender and labor income
 feols(laborinc18 ~ male, data = nlsy79, vcov = 'hetero')
 feols(laborinc18 ~ male, data = nlsy79, vcov = 'hetero', weights = ~perweight)
 # men earn $26,000 - $36,000 more than women. the point estimates are quite 
