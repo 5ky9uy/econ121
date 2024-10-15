@@ -56,7 +56,7 @@ nfhs4_by_age <-
             numobs = n())
 
 # look at the table. we use print() to control how many rows R displays.
-print(nfhs4_by_age, n=86)
+print(nfhs4_by_age, n=61)
 
 # it is a lot of rows! let's plot the means by age.
 # we see a rising but concave relationship.
