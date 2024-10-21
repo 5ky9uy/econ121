@@ -103,6 +103,8 @@ nhis2010 %>%
 # in marginal effects.
 avg_slopes(probit_model)
 avg_slopes(logit_model)
+# note if R is using scientific notation, you can turn it off using:
+# options(scipen = 999)
 
 
 # ODDS RATIOS
@@ -117,9 +119,8 @@ oddsratio <- exp(coef(logit_model))
 ci <- exp(confint(logit_model))
 cbind(oddsratio, ci)
 # to obtain standard errors, we would need to use the delta method.
-# the marginaleffects package allows this, but the syntax and output 
-# are complicated. you will not be expected to do this, but here is how:
-avg_comparisons(logit_model, comparison = "lnor",  transform = "exp")
+# but usually researchers test hypotheses using the original logit 
+# coefficient and standard error, not the transformed odds ratio.
 
 # these ORs are especially convenient for binary independent variables.
 # for instance, men have 32% lower odds of reporting sadness than women.
