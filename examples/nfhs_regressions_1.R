@@ -9,7 +9,7 @@ rm(list=ls())
 library(tidyverse)
 library(fixest)
 
-# load nlsy79.Rdata
+# load nlsy79.rds
 load(url("https://github.com/tomvogl/econ121/raw/main/data/nfhs4.rds"))
 
 # let's have a look at the distribution of age. note the "age heaping."
