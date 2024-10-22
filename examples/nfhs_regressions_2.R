@@ -10,7 +10,7 @@ library(tidyverse)
 library(fixest)
 library(marginaleffects) # for linear and non-linear combinations of coefficients
 
-# load nlsy79.Rdata
+# load nlsy79.rds
 load(url("https://github.com/tomvogl/econ121/raw/main/data/nfhs4.rds"))
 
 # filter data to include only 20-80 year old household heads
