@@ -76,7 +76,7 @@ feols(assets ~ age * male, data = nfhs4, vcov = ~clustnum, weights = ~weight)
 # using the same hypotheses() function as before.
 hypotheses(model1,"age / (age + ageXrural) = 0")
 # this is nice for interpretation. we can say that the slope in 
-# urban areas is 25% higher than the slope in rural areas, and that 
+# urban areas is 26% higher than the slope in rural areas, and that 
 # the proportional difference is statistically significant (because 
 # the 95% CI for the ratio excludes 1). we can add a formal test
 # of that hypothesis by changing the hypotheses() syntax from
@@ -84,7 +84,7 @@ hypotheses(model1,"age / (age + ageXrural) = 0")
 hypotheses(model1,"age / (age + ageXrural) = 1")
 # the p-value is <0.001, confirming out conclusion that the ratio
 # is significantly different from 1. note that the estimate is now
-# 0.25 rather than 1.25. that's because the function sets the Estimate
+# 0.26 rather than 1.26. that's because the function sets the Estimate
 # to equal the left-hand side minus the right-hand side.
 
 # Let's get some insight into why the slope is steeper in urban areas.
