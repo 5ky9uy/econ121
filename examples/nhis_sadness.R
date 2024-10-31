@@ -3,6 +3,9 @@
 # clear environment
 rm(list = ls())
 
+# no scientific notation
+options(scipen = 999)
+
 # load packages
 library(tidyverse)
 library(fixest)
