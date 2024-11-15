@@ -16,10 +16,10 @@ library(tidyverse)
 library(fixest)
   
 # Load the dataset
-load(url("https://github.com/tvogl/econ121/raw/main/data/wfh_china.Rdata"))
+load(url("https://github.com/tomvogl/econ121/raw/main/data/wfh.rds"))
 
 # Drop obs with missing calls data
-wfh_china <- wfh_china %>% drop_na(calls)
+wfh <- wfh %>% drop_na(calls)
 
 # Run an OLS regression of calls per week on WFH. This result will
 # be biased, but it will be useful to compare with our IV estimate
@@ -27,7 +27,7 @@ wfh_china <- wfh_china %>% drop_na(calls)
 # level because it is unreasonable to assume that errors are 
 # independent within worker.
 feols(calls ~ wfh, 
-      data = wfh_china, 
+      data = wfh, 
       vcov = ~personid)
 # WFH is associated with 10 more calls per week, but the association
 # is not statistically significant at conventional levels. Why is
@@ -44,7 +44,7 @@ feols(calls ~ wfh,
 # and only workers who participated in the lottery. Winning the 
 # lottery is random only within this group. 
 feols(calls ~ winner, 
-      data = wfh_china,
+      data = wfh,
       subset = ~(lottery==1 & prog_period==1),
       vcov = ~personid)
 # Winning the lottery raises calls per week by 30. This effect
@@ -55,7 +55,7 @@ feols(calls ~ winner,
 # should not have to worry about omitted variables bias. But
 # we can still check by including pre-program covariates,
 feols(calls ~ winner + age + female + college + children + commute, 
-      data = wfh_china,
+      data = wfh,
       subset = ~(lottery==1 & prog_period==1),
       vcov = ~personid)
 # The estimated effect of winning the lottery is the same. We
@@ -67,7 +67,7 @@ feols(calls ~ winner + age + female + college + children + commute,
 # was random is to check whether winners and losers had similar 
 # calls per week in the pre-period. This is a type of "balance check."
 feols(calls ~ winner, 
-      data = wfh_china, 
+      data = wfh, 
       subset = ~(lottery==1 & prog_period==0), 
       vcov = ~personid)
 # There is no significant difference in productivity between
@@ -77,7 +77,7 @@ feols(calls ~ winner,
 # So far, we have just seen "reduced form" estimates. What is
 # the "first stage?" We can run the "first stage" regression:
 feols(wfh ~ winner, 
-      data = wfh_china, 
+      data = wfh, 
       subset = ~(lottery==1 & prog_period==1), 
       vcov = ~personid)
 # Winning the lottery raises the probability of WFH by 87 percentage
@@ -104,7 +104,7 @@ feols(wfh ~ winner,
 
 # We can also estimate the IV coefficient using TSLS.
 feols(calls ~ 1 | wfh ~ winner,
-      data = wfh_china,
+      data = wfh,
       subset = ~(lottery==1 & prog_period==1),
       vcov = ~personid)
 
@@ -117,6 +117,6 @@ feols(calls ~ 1 | wfh ~ winner,
 # controlling for pre-program covariates:
 # We can also estimate the IV coefficient using TSLS.
 feols(calls ~ age + female + college + children + commute | wfh ~ winner,
-      data = wfh_china,
+      data = wfh,
       subset = ~(lottery==1 & prog_period==1),
       vcov = ~personid)
