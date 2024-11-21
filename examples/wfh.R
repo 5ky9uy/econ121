@@ -109,7 +109,7 @@ feols(calls ~ 1 | wfh ~ winner,
       vcov = ~personid)
 
 # There are *almost* no "always takers" here. If there were none,
-# we could interpret the IV estimate as a TOT With "always
+# we could interpret the IV estimate as a TOT. With "always
 # takers," we should interpret the IV estimate as a LATE, if
 # monotonicity is satisfied.
 
