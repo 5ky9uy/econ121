@@ -53,8 +53,9 @@ ggplot(local_means, aes(bin, demofficeexp_mean)) +
 # now let's run our main RD, using a global 4th order polynomial
 # to approximate the conditional expectation function. we allow
 # the shape of the polynomial to be different above and below
-# the victory threshold. following david lee, we will cluster
-# by district-year
+# the victory threshold. we will cluster by district-decade,
+# since district boundaries are redrawn every 10 years, but
+# this detail is not important for the course.
 poly <-
   feols(demsharenext ~ right + 
                        difdemshare + difdemshare2 + difdemshare3 + difdemshare4 +
@@ -63,7 +64,7 @@ poly <-
         vcov = ~statedisdec)
 summary(poly)
 # so a democratic victory now causes a 7 point increase in
-# the next election's democratic vote share
+# the next election's democratic vote share.
 # let's generate a predicted value
 elections$demsharenext_hat_poly <- predict(poly, elections)
 

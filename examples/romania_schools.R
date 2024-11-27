@@ -57,7 +57,7 @@ romania_schools %>%
 # interaction of dummy with distance
 romania_schools <- 
   romania_schools %>%
-  mutate(above = ifelse(distance>=0,1,0),
+  mutate(above = if_else(distance>=0,1,0),
          aboveXdistance = above*distance)
 
 # first stage local linear regression with rectangular kernel and bw = 0.2
