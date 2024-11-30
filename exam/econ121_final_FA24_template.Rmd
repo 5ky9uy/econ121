@@ -18,6 +18,10 @@ library(marginaleffects)
 # troubleshoot any resulting knitting problems.
 ```
 
+## In-person codeword (disregard if taking the exam remotely)
+
+
+
 ## Question 1
 
 ```{r}
