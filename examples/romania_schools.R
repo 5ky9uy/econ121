@@ -3,9 +3,11 @@
 # are based on an entry exam. we will use the admissions cutoff to
 # the town's better high school in a fuzzy regression discontinuity design.
 
+options(scipen = 999) # turn off scientific notation
 rm(list=ls())
 library(tidyverse)
 library(fixest)
+
 
 load(url("https://github.com/tomvogl/econ121/raw/main/data/romania_schools.rds"))
 
@@ -83,4 +85,4 @@ feols(ptile ~ distance + aboveXdistance | better ~ above,
 
 # we conclude that going to the better school raises exit 
 # exam performance by 6 percentiles on average. the effect 
-# is statistically significant at teh 5 percent level.
+# is statistically significant at the 5 percent level.
