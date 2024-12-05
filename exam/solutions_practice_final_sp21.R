@@ -153,16 +153,19 @@ feols(mom_working ~ 1 | mom_kids ~ child_male,
 # the first child.
 
 # B9
-model2 <- feglm(child_male ~ mom_rural + mom_edyrs + child_birthyr + mom_age, 
+model2 <- feglm(child_male ~ mom_rural + mom_edyrs + mom_age, 
                 data = nfhs5, 
                 vcov = ~psu_id,
                 family = 'probit')
 avg_slopes(model2)
 
 # B10
-# An additional year of maternal education is associated with a .07 percentage
-# point decline in the probability of having a first-born boy. The association
-# is statistically significant at the 10% level, so it poses a concern for
-# the independence assumption, which implies that the instrument should be 
+# An additional year of maternal education is associated with a .075 percentage
+# point decline in the probability of having a first-born boy, and an additional 
+# year of age is associated with a .06 percentage point increase in the probability.
+# Both associations are statistically significant at the 5% level, suggesting that
+# the gender of the first-born child is not "as good as random." This poses a concern 
+# for the independence assumption (or equivalently the exogeneity assumption from 
+# the homogeneous effects setup). If sex were "as good as random," it would be
 # unrelated to the mother's pre-birth characteristics.
 
