@@ -1,6 +1,8 @@
 # ECON 121: Applied Econometrics
 # Final Exam Solution
 
+rm(list=ls())
+
 # Load R packages
 library(tidyverse)
 library(fixest)
